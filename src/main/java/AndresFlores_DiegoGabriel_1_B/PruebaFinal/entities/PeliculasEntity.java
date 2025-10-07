@@ -1,9 +1,6 @@
 package AndresFlores_DiegoGabriel_1_B.PruebaFinal.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,7 +13,9 @@ import java.util.Date;
 @Getter@Setter
 @ToString@EqualsAndHashCode
 public class PeliculasEntity {
-     @Id
+    @Id
+     @GeneratedValue(strategy = GenerationType.SEQUENCE)
+     @SequenceGenerator(name = "SeqPeliculasGenerator",sequenceName = "SEQ_PELICULAS", allocationSize = 1)
      private Long id_pelicula;
     @Column(name = "TITULO")
      private String titulo;
