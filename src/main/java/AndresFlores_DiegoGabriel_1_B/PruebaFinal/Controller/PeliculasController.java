@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.Instant;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -63,8 +64,8 @@ public class PeliculasController {
     @PutMapping("/ModificarPeliculas/{id}")
     public ResponseEntity<?>actualizar(
             @PathVariable Long id,
-            @Valid @RequestBody PeliculaDTO peliculaDTO
-                  BindingResult BindingResult){
+            @Valid @RequestBody PeliculaDTO peliculaDTO,
+                  BindingResult bindingResult){
         if (bindingResult.hasErrors()){
             Map<String, String> errores = new HashMap<>();
             bindingResult.getFieldErrors().forEach(error ->
@@ -82,7 +83,7 @@ public class PeliculasController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of(
                     "Error", "Datos duplicados",
                     "Campo", e.getcampoduplicado
-            ))
+            ));
         }
 
     }
@@ -94,7 +95,7 @@ public class PeliculasController {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).header("X-message-error","Pelicula no encotrado").body(Map.of(
                         "Error","not found",
                         "mensaje","la pelicula no se encontro",
-                        "timestamp",Intant.now().toString()
+                        "timestamp", Instant.now().toString()
                 ));
 
             }
