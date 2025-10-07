@@ -3,10 +3,11 @@ package AndresFlores_DiegoGabriel_1_B.PruebaFinal.Controller;
 import AndresFlores_DiegoGabriel_1_B.PruebaFinal.Modals.DTO.PeliculaDTO;
 import AndresFlores_DiegoGabriel_1_B.PruebaFinal.service.PeliculasService;
 import jakarta.validation.Valid;
-import org.apache.coyote.Response;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -40,6 +41,21 @@ public class PeliculasController {
                      "Status","Succes",
                      "Data","respuesta"
              ));
+            }catch (Exception e){
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(Map.of(
+                        "Status","Error",
+                        "message","error al registrar",
+                        "detail",e.getMessage()
+                ));
             }
     }
+
+    @PutMapping("/ModificarPelicula/{id}")
+    public ResponseEntity<?>actualizar(
+            @PathVariable Long id,
+            @Valid @RequestBody
+            PeliculaDTO pelicula, BindingResult.hasErrors(){
+                Map<String,String>
+    }
+
 }
