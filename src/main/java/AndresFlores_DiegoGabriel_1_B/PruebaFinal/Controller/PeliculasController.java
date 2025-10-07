@@ -19,7 +19,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/Api/Peliculas")
-@CrossOrigin
+@CrossOrigin("*")
 public class PeliculasController {
 
     @Autowired

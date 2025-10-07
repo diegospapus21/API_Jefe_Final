@@ -20,7 +20,7 @@ import java.util.stream.Stream;
 
 @Slf4j
 @Service
-@CrossOrigin
+@CrossOrigin("*")
 public class PeliculasService     {
 
     @Autowired
